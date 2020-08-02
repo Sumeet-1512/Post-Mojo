@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Forum - Board overview</title>
+
+    <style type="text/css">
+      .forum-col {
+        min-width: 16em;
+      }
+      .last-post-col {
+        min-width: 12em;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <h1><a href="Mainpage.html" class="navbar-brand">PostMOJO</a></h1>
+        <form class="form-inline">
+          <input type="text" class="form-control mr-2 mb-0 mb-sm-0" style="margin-left: 0%" placeholder="Search">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+      </div>
+    </nav>
+    <div class="container my-3">
+      <nav class="breadcrumb">
+        <span class="breadcrumb-item active">Board index</span>
+    <a href="/postit" type="submit" class="btn btn-primary" style="margin-left: 60%" >Create Forum</a>
+    <a type="submit" class="text-white btn btn-dark" id ='userprofile'>OnlineChatRoom</a>
+
+      </nav>
+      <div id = "Posts"></div>
+
+      <div class="row" id = "postandcategory">
+        <div class="col-12 col-xl-9">
+          <h2 class="h4 bg-danger mb-0 p-4 rounded-top">Sports</h2>
+          <table class="table table-striped table-bordered table-responsive">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="forum-col"style="width: 50%">Forum question</th>
+                <th scope="col" class="last-post-col"style="width: 30%">Author</th>
+                <th scope="col" class="last-post-col" style="width: 20%  ">Posted on</th>
+              </tr>
+            </thead>
+            <tbody id ='sports'></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="row" id = "postandcategory">
+        <div class="col-12 col-xl-9">
+          <h2 class="h4 bg-warning mb-0 p-4 rounded-top"><a href="overview-forum-category.html" class="text-white" >Movie</a></h2>
+          <table class="table table-striped table-bordered table-responsive">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="forum-col"style="width: 50%">Forum question</th>
+                <th scope="col" class="last-post-col"style="width: 30%">Author</th>
+                <th scope="col" class="last-post-col" style="width: 20%">Posted on</th>
+              </tr>
+            </thead>
+            <tbody id ='movie'></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="row" id = "postandcategory">
+        <div class="col-12 col-xl-9">
+          <h2 class="h4 bg-secondary mb-0 p-4 rounded-top"><a href="overview-forum-category.html" class="text-white" >Politics</a></h2>
+          <table class="table table-striped table-bordered table-responsive">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="forum-col"style="width: 50%">Forum question</th>
+                <th scope="col" class="last-post-col"style="width: 30%">Author</th>
+                <th scope="col" class="last-post-col" style="width: 20%">Posted on</th>
+              </tr>
+            </thead>
+            <tbody id ='politics'></tbody>
+          </table>
+
+        </div>
+      </div>
+
+
+      <div class="row" id = "postandcategory">
+        <div class="col-12 col-xl-9">
+          <h2 class="h4 bg-primary mb-0 p-4 rounded-top"><a href="overview-forum-category.html" class="text-white" >Technology</a></h2>
+          <table class="table table-striped table-bordered table-responsive">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="forum-col"style="width: 50%">Forum question</th>
+                <th scope="col" class="last-post-col"style="width: 30%">Author</th>
+                <th scope="col" class="last-post-col" style="width: 20%">Posted on</th>
+              </tr>
+            </thead>
+            <tbody id ='technology'></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="row" id = "postandcategory">
+        <div class="col-12 col-xl-9">
+          <h2 class="h4 bg-success mb-0 p-4 rounded-top"><a href="overview-forum-category.html" class="text-white" >Health</a></h2>
+          <table class="table table-striped table-bordered table-responsive">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="forum-col"style="width: 50%">Forum question</th>
+                <th scope="col" class="last-post-col"style="width: 30%">Author</th>
+                <th scope="col" class="last-post-col" style="width: 20%">Posted on</th>
+              </tr>
+            </thead>
+            <tbody id ='health'></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="row" id = "postandcategory">
+        <div class="col-12 col-xl-9">
+          <h2 class="h4 bg-dark mb-0 p-4 rounded-top"><a href="overview-forum-category.html" class="text-white" >Space</a></h2>
+          <table class="table table-striped table-bordered table-responsive">
+            <thead class="thead-light">
+              <tr >
+                <th scope="col" class="forum-col"style="width: 50%">Forum question</th>
+                <th scope="col" class="last-post-col"style="width: 30%">Author</th>
+                <th scope="col" class="last-post-col" style="width: 20%">Posted on</th>
+              </tr>
+            </thead>
+            <tbody id ='space'></tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+    <footer class="small bg-secondary text-white">
+      <div class="container py-4">
+        <ul class="list-inline mb-0 text-center">
+          <li class="list-inline-item"> 2017 Web Company, Inc.</li>
+          <li class="list-inline-item">All rights reserved.</li>
+          <li class="list-inline-item"><a href="#">Terms of use and privacy policy</a>.</li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- jQuery first, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBACola5JwsYE2O2_LbW1-cxGLUTFeQTPk",
+    authDomain: "mwdm-85dc5.firebaseapp.com",
+    databaseURL: "https://mwdm-85dc5.firebaseio.com",
+    projectId: "mwdm-85dc5",
+    storageBucket: "",
+    messagingSenderId: "131924353033",
+    appId: "1:131924353033:web:a8a3efb86201f4393bd8d8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>  
+<script >
+//getting all the components.
+var username = document.getElementById("username")
+var category = document.getElementById("category")
+var query = document.getElementById("post")
+var query2 = document.getElementById("mainpost")
+var  button = document.getElementById("submitpost")
+
+var category = ['health','space','politics','technology','sports','movie']
+for (i= 0 ; i<6 ; i++){
+var fireheadref = firebase.database().ref(category[i]+'/post')
+
+fireheadref.on('child_added',function(datasnapshot){
+    
+    var username = datasnapshot.child("username").val();
+    
+    var category = datasnapshot.child("category").val();
+
+    var query = datasnapshot.child("query").val();
+    
+    var query2 = datasnapshot.child("query2").val();
+    
+    var date = datasnapshot.child("date").val();
+    var queryinfo = [username,category,query,query2,date]
+        var content =""
+                   content+=   '<tr style =>'
+                   content+=    '<td ">'
+                   content+=     '<h3 class="h5 mb-0"><a href="/post?query='+query+'&user='+username+'&description='+query2+'&category='+category+'"  class="text-uppercase">'+query+'</a></h3>'
+                   content+=      '<p class="mb-0" >'+'Description : '+query2+'</p>'
+                      content+=  '</td>'
+                        
+                      content+='<td>'
+                      content+=  '<div>By <a href="#0">'+username+'</a></div>'
+                      content+='</td>'
+                                              
+                      content+='<td>'
+                      content+=  '<div>On <a href="#0">'+date+'</a></div>'
+                      content+='</td>'
+                      content+='</tr>'
+                      
+                      
+        if(category == 'sports'){
+            
+            $('#sports').append(content)
+        }else if(category == 'health'){
+            $('#health').append(content)
+        }else if(category == 'space'){
+
+            $('#space').append(content)
+        }else if(category == 'politics'){
+
+            $('#politics').append(content)
+        }else if(category == 'technology'){
+
+            $('#technology').append(content)
+        }else if(category == 'movie'){
+
+            $('#movie').append(content)
+        }
+    console.log(username+category+query+query2)
+   
+})
+}
+if (!firebase.auth().currentUser ) {
+  $('#idgooglesign').html("Login");
+  $("userprofile").hide();
+}else if(firebase.auth().currentUser ){
+ $('#idgooglesign').html("Logout");
+ $("userprofile").show();
+}
+function toggleSignIn(checker) {
+      if (!firebase.auth().currentUser) {
+         // Sign into Firebase using popup auth & Google as the identity provider.
+   base_provider = new firebase.auth.GoogleAuthProvider()
+  firebase.auth().signInWithPopup(base_provider).then(function(result){
+    
+    var username = result.user.displayName
+    var useremail = result.user.email
+    var phoneno = result.user.phoneNumber
+    var profilepic = result.user.photoURL
+    var userdata = [username,useremail,phoneno,profilepic]
+    console.log(userdata)
+    console.log("Successfully Loggedin...")
+    $('#idgooglesign').html("Logout");
+  }).catch(function(err){
+    console.log(err)
+  });
+      } else {
+        // [START signout]
+        firebase.auth().signOut();
+        $('#idgooglesign').html("Login");
+
+        
+        // [END signout]
+      }
+    }
+
+{
+// button.onclick=()=>{
+//     window.alert("Query is getting posted. . .");
+//     var username = document.getElementById("username").value
+//     var category = document.getElementById("category").value
+//     var query = document.getElementById("post").value
+//     var query2 = document.getElementById("mainpost").value
+//     var d = Date(Date.now()); 
+//     date = d.toString() 
+//     console.log(username+category+query+query2)
+
+//     writeUserData(username,category,query,query2,date)
+
+// }
+// function writeUserData(username,category,query,query2,date) {
+//     var categoryref = firebase.database().ref().child(category)
+//     var keyle= categoryref.push().key;
+  
+//     var data = {
+//       username : username,
+//       category: category,
+//       query : query,
+//       query2:query2,
+//       date: date
+//     }
+//   var updates ={};
+//   updates['/'+category+'/'+'post'+'/'+keyle+'/']=data;
+//   firebase.database().ref().update(updates);
+//   alert("post has been created.");
+  
+//   }
+}
+</script>
+</body>
+</html>

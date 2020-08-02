@@ -1,0 +1,67 @@
+<html>
+<head>
+  <title>PostMOJO</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+
+<button action="/postMojo" type="submit" onclick="signinbtn()" class="btn btn-primary">Googlesignup</button>
+
+<button type="button" onclick="signoutbtn()" class="btn btn-primary">Googlesignout</button>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBACola5JwsYE2O2_LbW1-cxGLUTFeQTPk",
+    authDomain: "mwdm-85dc5.firebaseapp.com",
+    databaseURL: "https://mwdm-85dc5.firebaseio.com",
+    projectId: "mwdm-85dc5",
+    storageBucket: "",
+    messagingSenderId: "131924353033",
+    appId: "1:131924353033:web:a8a3efb86201f4393bd8d8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script >
+  function signinbtn(){
+     // Sign into Firebase using popup auth & Google as the identity provider.
+   base_provider = new firebase.auth.GoogleAuthProvider()
+  firebase.auth().signInWithPopup(base_provider).then(function(result){
+    console.log(result.user.displayname)
+    console.log(result.user.email)
+    console.log(result.user.phoneNumber)
+    console.log(result.user.photoUrl)
+    console.log("Successfully signuped")
+  }).catch(function(err){
+    console.log(err)
+  });
+  }
+  function signoutbtn(){
+    firebase.auth().signout();
+  }
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<html>
+<head>
+  <title>PostMOJO</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<!-- <div id="div1">
+  Thank You for Login<br>
+  <button onclick="logout()">Logout</button>
+</div> -->
+
+
+<div id="form1">
+<div style="margin-left:40% ; margin-right: 40%;margin-top: 5% ">
+    <div class="form-group">
+      <h3>Signup</h3>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your information with anyone else.</small>
+      <label for="exampleInputEmail1">Username</label>
+      <input type="text" id = "Username" class="form-control" aria-describedby="emailHelp" placeholder="Enter Username">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email</label>
+      <input type="text" id = "email_id"class="form-control" aria-describedby="emailHelp" placeholder="Enter Email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" id = "pass" class="form-control" placeholder="Enter Password">
+    </div>
+    <button type="button" id="signup" class="btn btn-primary" onclick="Signin()">Signup</button>
+  </div>
+  <p style="text-align: center;"><a href="/login">Already a user? Login here...</a></p>
+</div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBACola5JwsYE2O2_LbW1-cxGLUTFeQTPk",
+    authDomain: "mwdm-85dc5.firebaseapp.com",
+    databaseURL: "https://mwdm-85dc5.firebaseio.com",
+    projectId: "mwdm-85dc5",
+    storageBucket: "",
+    messagingSenderId: "131924353033",
+    appId: "1:131924353033:web:a8a3efb86201f4393bd8d8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  var username = document.getElementById("username").value
+  var email = document.getElementById("email").value
+  var password = document.getElementById("password").value
+  var signupbutton = document.getElementById("signup")
+  signupbutton.onclick=()=>{
+    window.alert("You are getting signed-up Please wait...");
+    var username = document.getElementById("username").value
+  var email = document.getElementById("email").value
+  var password = document.getElementById("password").value
+    writeUserData(username,email,password)
+
+}
+function writeUserData(username,email,password) {
+  var k;
+  var fireheadref = firebase.database().ref('users')
+    fireheadref.on('child_added',function(datasnapshot){
+      k  = 0
+      if(datasnapshot.child("username").val()==username){
+        k+=1
+      }else{
+        console.log("User doesn't exists!")
+      }  
+    })
+    if(k==0){
+        var userref = firebase.database().ref().child("users")
+
+        var keyle= userref.push().key;
+        
+       var data = {
+          username : username,
+          email: email,
+          password : password
+      }
+        var updates ={};
+        updates['/'+'users'+'/'+keyle+'/']=data;
+        firebase.database().ref().update(updates);
+        alert("User has been created.Click on the login page");
+        link= 'http://localhost:3000/login'
+        window.location.href(link);
+      }else{
+        alert("sorry user already exists!")
+      }
+   }
+</script> -->
+
+<!-- <script >
+  //Script here for the code.
+  var firebaseConfig = {
+    apiKey: "AIzaSyBRGv0ClyIJJTiuzbziJfm0go936mri0P8",
+    authDomain: "my-web-app-e212d.firebaseapp.com",
+    databaseURL: "https://my-web-app-e212d.firebaseio.com",
+    projectId: "my-web-app-e212d",
+    storageBucket: "",
+    messagingSenderId: "934497220053",
+    appId: "1:934497220053:web:65738b1ee14be2f7ac395c",
+    measurementId: "G-G3W1ZM4GPJ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script> -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBACola5JwsYE2O2_LbW1-cxGLUTFeQTPk",
+    authDomain: "mwdm-85dc5.firebaseapp.com",
+    databaseURL: "https://mwdm-85dc5.firebaseio.com",
+    projectId: "mwdm-85dc5",
+    storageBucket: "",
+    messagingSenderId: "131924353033",
+    appId: "1:131924353033:web:a8a3efb86201f4393bd8d8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script> 
+
+
+<script >
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    // document.getElementById("div1").style.display="block";
+    // document.getElementById("form1").style.display="none";
+// window.alert("logged in");
+    // window.location = "signup.html";
+var user = firebase.auth().currentUser;
+if(user != null){
+  var email_id = user.email;
+  email_id = email_id.split('@')
+  email_id=email_id[0]
+// document.getElementById("para").innerHTML="welcome :" +email_id;
+  window.location = 'http://localhost:3000/postMojo?username='+email_id
+}
+ }  else {
+   //No user is signed in.
+    // document.getElementById("div1").style.display="none";
+    document.getElementById("form1").style.display="block";
+    // window.location = "index.html";
+  }
+});
+
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return firebase.auth().signInWithEmailAndPassword(username, password);
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+
+console.log("login");
+var username = document.getElementById("Username");
+var password = document.getElementById("pass");
+console.log(username);
+console.log(password);
+//code to extract a tag from a string
+function Signin(){
+
+var email_id = document.getElementById("Username").value;
+var password = document.getElementById("pass").value;
+var username = document.getElementById("email_id").value;
+
+console.log(username);
+console.log(password);
+// window.alert(username +" " +password);
+
+
+// firebase.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
+//   // Handle Errors here.
+//   var errorCode = error.code;
+//   var errorMessage = error.message;
+//   // ...
+// });
+  
+firebase.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  window.alert(errorCode);
+  window.alert(errorMessage);
+  // ...
+});
+
+
+// firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
+//   // Handle Errors here.
+//   console.log(username);
+// console.log(password);
+//   var errorCode = error.code;
+//   var errorMessage = error.message;
+//   console.log(errorMessage);
+//   console.log("hi");
+//   window.alert(errorMessage);
+//   // ...
+// });
+//}
+
+var k;
+  var fireheadref = firebase.database().ref('users')
+    fireheadref.on('child_added',function(datasnapshot){
+      k  = 0
+      if(datasnapshot.child("username").val()==username){
+        k+=1
+      }else{
+        console.log("User doesn't exists!")
+      }  
+    })
+    if(k==0){
+        var userref = firebase.database().ref().child("users")
+
+        var keyle= userref.push().key;
+        
+       var data = {
+          username : username,
+          email: email_id,
+          password : password
+      }
+        var updates ={};
+        updates['/'+'users'+'/'+keyle+'/']=data;
+        firebase.database().ref().update(updates);
+        alert("User has been created.Click on the login page");
+        link= 'http://localhost:3000/login'
+        window.location.href(link);
+      }else{
+        alert("sorry user already exists!")
+      }
+   }
+
+
+
+</script>
+
+
+</body>
+</html>

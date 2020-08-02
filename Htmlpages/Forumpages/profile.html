@@ -1,0 +1,209 @@
+<html>
+<head>
+  <title>PostMOJO</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style type="text/css">
+    .forum-col {
+      min-width: 16em;
+    }
+    .last-post-col {
+      min-width: 12em;
+    }
+    .btn {
+margin-left: 2px;
+margin-right: 2px;
+  color: black;
+    
+font-family: Raleway-SemiBold;
+font-size: 13px;
+color: rgba(255, 255, 255, 0.75);
+letter-spacing: 1px;
+
+line-height: 15px;
+border: 2px solid rgba(0, 0, 0, 0.75);
+border-radius: 40px;
+background: rgb(0, 0, 0);
+transition: all 0.3s ease 0s;
+}
+.btn:hover {
+color: rgb(255, 255, 255);
+background: blue;
+border: 2px solid rgba(255, 255, 255, 0.75);
+}
+
+  </style>
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+          <h1 style="color: aliceblue;" id = 'headerlink'>PostMOJO</h1>
+         
+        <div><button class="btn bg-danger" style="margin-left: 60%" id="logout" onclick="logout()">Logout</button></div>
+        </div>
+        </nav>
+        <div class="container my-3">
+            <nav class="breadcrumb">
+              <span class="breadcrumb-item active">Board index</span>
+          <button class="btn bg-danger" style="margin-left: 60%" id="createforum" title="You need to login...">Create Forum</button>
+          <a href= "http://localhost:5000" type="submit" class="btn btn-primary" id ='userprofile'>OnlineChatRoom</a>
+
+            </nav>
+            <div id = "Posts">
+                
+
+            </div>
+            <table class="table table-striped table-bordered table-responsive-lg">
+                <tbody>
+                  <tr class="bg-primary text-white"><th rowspan="1">Your Posts...</th></tr>
+                  <tbody id ="postblock"></tbody>
+                </tbody>
+              </table>
+            <table class="table table-striped table-bordered table-responsive-lg">
+                <tbody >
+                  <tr class="bg-danger text-white"><th rowspan="1">Your Replies...</th></tr>
+                  <tbody id ="replyblock"></tbody>
+                </tbody>
+              </table>
+
+
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBACola5JwsYE2O2_LbW1-cxGLUTFeQTPk",
+    authDomain: "mwdm-85dc5.firebaseapp.com",
+    databaseURL: "https://mwdm-85dc5.firebaseio.com",
+    projectId: "mwdm-85dc5",
+    storageBucket: "",
+    messagingSenderId: "131924353033",
+    appId: "1:131924353033:web:a8a3efb86201f4393bd8d8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script >
+  //Script here for the code.
+  document.getElementById("headerlink").onclick=()=>{
+  window.location='http://localhost:3000/postMojo?username='+usernameorg
+}
+// document.getElementById("logout").onclick=()=>{
+//   window.location='http://localhost:3000/postMojo'
+// }
+
+var str = window.location.href
+mySubString = str.split('&')
+var username = mySubString[0].split('=')
+var usernameorg = username[1]
+
+
+console.log(usernameorg)
+var content;
+var category = ['health','space','politics','technology','sports','movie']
+for (i= 0 ; i<6 ; i++){
+var fireheadref = firebase.database().ref(category[i]+'/post')
+fireheadref.on('child_added',function(datasnapshot){
+    content = ""
+      if(datasnapshot.child('username').val() == usernameorg )
+      {
+        console.log("User profile exists!")
+        title = datasnapshot.child('query').val()
+        description = datasnapshot.child('query2').val()
+        date = datasnapshot.child('date').val()
+        console.log(description)
+       // Code here for showing the user profile...
+        content+='<tr>'
+                    content+='<td class="author-col"  >'
+                    content+='<div>Post Author : <span id="authorname">'+usernameorg+'</span></div>'
+                    content+='</td>'
+                    content+='<td class="post-col d-lg-flex justify-content-lg-between">'
+                    content+='<div ><span class="font-weight-bold">Post subject : </span><span id = "replysubject">'+title+'</span></div>'
+                    content+='</td>'
+                    content+='</tr>'
+                    content+='<tr>'
+                    content+='<td style="width:100%" colspan="2">'
+                    content+='<p id ="replydescription"  >'+description+'<p/>'
+                    content+='  <footer><span>'+'Post date: '+date+'</span></footer>'
+                    content+='</td>'
+                    content+='</tr>'
+                    $('#postblock').append(content)
+      }else{
+        console.log("Erreor occured")
+      }
+})
+}
+for (i= 0 ; i<6 ; i++){
+var fireheadref = firebase.database().ref(category[i]+'/reply')
+fireheadref.on('child_added',function(datasnapshot){
+    content = ""
+      if(datasnapshot.child('authorname').val() == usernameorg)
+      {
+        console.log("User profile exists!")
+        title = datasnapshot.child('title').val()
+        description = datasnapshot.child('description').val()
+        date = datasnapshot.child('date').val()
+        console.log(description)
+       // Code here for showing the user profile...
+        content+='<tr>'
+                    content+='<td class="author-col"  >'
+                    content+='<div>Reply Author : <span id="authorname">'+usernameorg+'</span></div>'
+                    content+='</td>'
+                    content+='<td class="post-col d-lg-flex justify-content-lg-between">'
+                    content+='<div ><span class="font-weight-bold">Reply subject : </span><span id = "replysubject">'+title+'</span></div>'
+                    content+='</td>'
+                    content+='</tr>'
+                    content+='<tr>'
+                    content+='<td style="width:100%" colspan="2">'
+                    content+='<p id ="replydescription"  >'+description+'<p/>'
+                    content+='  <footer><span>'+'Reply date: '+date+'</span></footer>'
+                    content+='</td>'
+                    content+='</tr>'
+                    $('#replyblock').append(content)
+      }else{
+        console.log("Erreor occured")
+      }
+})
+}
+
+function logout(){  
+  firebase.auth().signOut().then(function() {
+  // Sign-out successful
+  window.alert("signOut");
+  window.location="http://localhost:3000/postMojo"
+}).catch(function(error) {
+  // An error happened.
+  window.alert(error.message);
+});
+}
+document.getElementById("createforum").onclick=()=>{
+  window.location='http://localhost:3000/postit?username='+usernameorg
+} 
+
+</script>
+
+
+
+
+</body>
+</html>

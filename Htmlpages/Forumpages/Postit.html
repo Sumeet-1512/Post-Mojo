@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>hello</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <form action ="/postMojo" style="margin-right: 30% ; margin-left: 30% ; margin-top: 5%">
+            <label for="">Category</label>
+            <select required class="custom-select" id = "category">
+                <option selected>Open to select Category</option>
+                <option value="health">Health</option>
+                <option value="technology">Technology</option>
+                <option value="politics">Politics</option>
+                <option value="sports">Sports</option>
+                <option value="space">Space</option>
+                <option value="movie">Movie</option>
+              </select>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Tweet name</label>
+              <input required type="text"  class="form-control" id="post" placeholder="Enter the tweet name. . .">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Description</label>
+                <textarea type="text" class="form-control" id="mainpost" placeholder="Please keep the discription within 125 characters. And please don't use quotes." cols="30" rows="10" maxlength = 125></textarea>
+              </div>
+            <button type="button" id = "submitpost" class="btn btn-primary" style="align-self: center">Submit</button>
+          </form>  
+          
+        <button type="button" id = "gobacksimon"  style="margin-left: 45% " class="btn btn-dark">Go back to main page</button>
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            
+
+
+            
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+
+<script src="/__/firebase/7.1.0/firebase-auth.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBACola5JwsYE2O2_LbW1-cxGLUTFeQTPk",
+    authDomain: "mwdm-85dc5.firebaseapp.com",
+    databaseURL: "https://mwdm-85dc5.firebaseio.com",
+    projectId: "mwdm-85dc5",
+    storageBucket: "",
+    messagingSenderId: "131924353033",
+    appId: "1:131924353033:web:a8a3efb86201f4393bd8d8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script >
+//getting all the components.
+var username = document.getElementById("username")
+var category = document.getElementById("category")
+var query = document.getElementById("post")
+var query2 = document.getElementById("mainpost")
+var  button = document.getElementById("submitpost")
+
+var category = ['health','space','politics','technology','sports','movie']
+for (i= 0 ; i<6 ; i++){
+var fireheadref = firebase.database().ref(category[i]+'/post')
+
+fireheadref.on('child_added',function(datasnapshot){
+    
+    var username = datasnapshot.child("username").val();
+    
+    var category = datasnapshot.child("category").val();
+
+    var query = datasnapshot.child("query").val();
+    
+    var query2 = datasnapshot.child("query2").val();
+    
+    var date = datasnapshot.child("date").val();
+   
+        var content =""
+                   content+=   '<tr style =>'
+                   content+=    '<td ">'
+                   content+=     '<h3 class="h5 mb-0"><a href="post.html"  action = '+query+'class="text-uppercase">'+query+'</a></h3>'
+                   content+=      '<p class="mb-0" >'+'Description : '+query2+'</p>'
+                      content+=  '</td>'
+                        
+                      content+='<td>'
+                      content+=  '<div>By <a href="#0">'+username+'</a></div>'
+                      content+='</td>'
+                                              
+                      content+='<td>'
+                      content+=  '<div>On <a href="#0">'+date+'</a></div>'
+                      content+='</td>'
+                      content+='</tr>'
+                      
+                      
+        if(category == 'sports'){
+            
+            $('#sports').append(content)
+        }else if(category == 'health'){
+            $('#health').append(content)
+        }else if(category == 'space'){
+
+            $('#space').append(content)
+        }else if(category == 'politics'){
+
+            $('#politics').append(content)
+        }else if(category == 'technology'){
+
+            $('#technology').append(content)
+        }else if(category == 'movie'){
+
+            $('#movie').append(content)
+        }
+   
+})
+}
+
+var str = window.location.href
+var mySubString = str.split('&')
+var username = mySubString[0].split('=')
+usernameorg = username[1]
+console.log(usernameorg)
+button.onclick=()=>{
+    window.alert("Query is getting posted. . .");
+    
+    var username = usernameorg
+    var category = document.getElementById("category").value
+    var query = document.getElementById("post").value
+    var query2 = document.getElementById("mainpost").value
+    var d = Date(Date.now()); 
+    date = d.toString() 
+
+    writeUserData(username,category,query,query2,date)
+
+}
+function writeUserData(username,category,query,query2,date) {
+    var categoryref = firebase.database().ref().child(category)
+    var keyle= categoryref.push().key;
+  
+    var data = {
+      username : username,
+      category: category,
+      query : query,
+      query2:query2,
+      date: date
+    }
+  var updates ={};
+  updates['/'+category+'/'+'post'+'/'+keyle+'/']=data;
+  firebase.database().ref().update(updates);
+  alert("post has been created.");
+  window.location = 'http://localhost:3000/postMojo?username='+username; 
+  }
+  document.getElementById('gobacksimon').onclick=()=>{
+    window.location = "http://localhost:3000/postMojo?username="+usernameorg; 
+  }
+
+</script>
+        </body>
+</html>
